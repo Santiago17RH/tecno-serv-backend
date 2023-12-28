@@ -15,25 +15,31 @@ const EquipoController = {
     createNewEquipo: async (req, res) => {
         try{
             let{
-                idEquipo,
+                identificacionProv,
                 placaNumeroSerie,
+                marca,
+                tipoEquipo,
                 contingencia,
                 procesador,
                 descripcion,
                 sistemaOperativo,
                 ram,
-                alacenamiento
+                almacenamiento,
+                estado
             } = req.body;
 
             let resultadoNewEquipo = await EquipoModel.create({
-                id_equipo: idEquipo,
+                identificacion_prov: identificacionProv,
                 placa_numero_serie: placaNumeroSerie,
+                marca_fk: marca,
+                tipo_equipo_fk: tipoEquipo,
                 contingencia: contingencia,
                 procesador: procesador,
                 descripcion: descripcion,
                 sistema_operativo: sistemaOperativo,
                 ram: ram,
-                alacenamiento: alacenamiento,
+                almacenamiento: almacenamiento,
+                estado_fk: estado,
 
             });
             res.status(201).json({
@@ -47,7 +53,50 @@ const EquipoController = {
     },
 
     updateEquipo: async (req, res) => {
-        
+        try {
+            let {
+                idEquipo,
+                identificacionProv,
+                placaNumeroSerie,
+                marca,
+                tipoEquipo,
+                contingencia,
+                procesador,
+                descripcion,
+                sistemaOperativo,
+                ram,
+                almacenamiento,
+                estado
+            } = req.body;
+
+            let resultadoAcEquipo = await EquipoModel.update({
+                identificacion_prov: identificacionProv,
+                placa_numero_serie: placaNumeroSerie,
+                marca_fk: marca,
+                tipo_equipo_fk: tipoEquipo,
+                contingencia: contingencia,
+                procesador: procesador,
+                descripcion: descripcion,
+                sistema_operativo: sistemaOperativo,
+                ram: ram,
+                almacenamiento: almacenamiento,
+                estado_fk: estado,
+            }, {
+                where: {
+                    id_equipo: idEquipo
+                }
+            });
+
+            res.json({
+                message: "Equipo Actualizado Con Exito",
+                resultadoAcEquipo
+            });
+        } catch (error) {
+            console.error("Error al actualizar equipo:", error);
+            res.status(500).json({
+                message: "Error al actualizar equipo"
+            });
+        }
     }
 };
 

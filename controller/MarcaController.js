@@ -18,19 +18,19 @@ const MarcaController = {
             let resultadoMarca = await MarcaModel.create({ marca: marca });
             res.json({ message: "Marca Creada Con Éxito", resultadoMarca });
         } catch (error) {
-            console.error("Error al crear un nueva marca:", error);
-            res.status(500).json({ message: "Error al crear un nueva marca" });
+            console.error("Error al crear una nueva marca:", error);
+            res.status(500).json({ message: "Error al crear una nueva marca" });
         }
     },
 
     updateMarca: async (req, res) => {
         try {
-            let { idmarca, marca} = req.body;
+            let { idMarca, marca} = req.body;
             let resultadoAcMarca = await MarcaModel.update(
                 { marca: marca },
-                { where: { id_marca: idmarca } }
+                { where: { id_marca: idMarca } }
             );
-            res.json({ message: "Marca Del Dispositivo Fue Actualizada Con Éxito", resultadoAcMarca });
+            res.json({ message: "La Marca Del Dispositivo Fue Actualizada Con Éxito", resultadoAcMarca });
         } catch (error) {
             console.error("Error al actualizar marca:", error);
             res.status(500).json({ message: "Error al actualizar marca" });

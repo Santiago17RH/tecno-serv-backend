@@ -10,10 +10,10 @@ id_equipo: {
     autoIncrement: true,
     allowNull: false
 },
-id_documento: {
+/* id_documento: {
     type: DataTypes.INTEGER(20),
     allowNull: false
-},
+}, */
 identificacion_prov: {
     type: DataTypes.STRING(15),
     allowNull: false

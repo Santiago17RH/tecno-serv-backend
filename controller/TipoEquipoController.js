@@ -3,9 +3,9 @@ const TipoEquipoModel = require("../model/models/TipoEquipoModel");
 const TipoEquipoController = {
     getAllTipoEquipos: async (req, res) => {
         try {
-            let TipoEquiposCreadas = await TipoEquipoModel.findAll();
-            console.log(TipoEquiposCreadas);
-            res.json({ message: "Consulta realizada con exito", TipoEquiposCreadas });
+            let TipoEquiposCreados = await TipoEquipoModel.findAll();
+            console.log(TipoEquiposCreados);
+            res.json({ message: "Consulta realizada con exito", TipoEquiposCreados });
         } catch (error) {
             console.error("Error al obtener Tipo de Equipos:", error);
             res.status(500).json({ message: "Error al obtener Tipo de Equipos" });
@@ -30,7 +30,7 @@ const TipoEquipoController = {
                 { tipo_equipo: TipoEquipo },
                 { where: { id_tipo_equipo: idTipoEquipo } }
             );
-            res.json({ message: "Tipo de Equipo Del Dispositivo Fue Actualizada Con Éxito", resultadoAcTipoEquipo });
+            res.json({ message: "Tipo de Equipo Fue Actualizada Con Éxito", resultadoAcTipoEquipo });
         } catch (error) {
             console.error("Error al actualizar Tipo de Equipo:", error);
             res.status(500).json({ message: "Error al actualizar Tipo de Equipo" });

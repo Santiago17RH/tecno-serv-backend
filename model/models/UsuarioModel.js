@@ -13,10 +13,10 @@ nombre: {
     type: DataTypes.STRING(80),
     allowNull: false
 },
-/* correo: {
+correo: {
     type: DataTypes.STRING(150),
     allowNull: false
-}, */
+},
 rol_fk:{
     type: DataTypes.INTEGER(5),
     allowNull: false
@@ -29,9 +29,9 @@ ubicacion_fk:{
     type: DataTypes.INTEGER(5),
     allowNull: false
 },
-/* estado_Usuario:{
+estado_usuario:{
     type: DataTypes.BOOLEAN
-} */
+}
 
 },{
     sequelize,

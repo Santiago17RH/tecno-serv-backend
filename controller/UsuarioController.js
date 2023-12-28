@@ -41,10 +41,12 @@ const UsuarioController = {
             let {
                 docIdentidadUsuario,
                 nombreUsuario,
+                correo,
                 rolUsuario,
                 areaUsuario,
                 ubicacionUsuario,
-                contraseña
+                contraseña,
+                estadoUsuario
             } = req.body;
 
             let contraseñaEncriptada = await bcrypt.hashSync(contraseña, 10);
@@ -52,9 +54,11 @@ const UsuarioController = {
             let resultadoNewUsuario = await UsuarioModel.create({
                 doc_identidad: docIdentidadUsuario,
                 nombre: nombreUsuario,
+                correo: correo,
                 rol_fk: rolUsuario,
                 area_fk: areaUsuario,
-                ubicacion_fk: ubicacionUsuario
+                ubicacion_fk: ubicacionUsuario,
+                estado_usuario: estadoUsuario
             });
 
             let resultadoCredencial = await CredencialModel.create({
@@ -68,10 +72,18 @@ const UsuarioController = {
                 resultadoCredencial
             });
         } catch (error) {
-            console.error("Error al crear un nuevo usuario:", error);
-            res.status(500).json({
-                message: "Error al crear un nuevo usuario"
-            });
+            if (error.name=="SequelizeUniqueConstraintError") {
+                console.log("Error Duplicados")
+                res.status(403)
+                res.send({errors: [{msg:"El documento de identificación ya existe"}]})
+            }else{
+                console.error("Error al crear un nuevo usuario:", error);
+                res.status(500).json({
+                    message: "Error al crear un nuevo usuario"
+                });
+            }
+
+
         }
     },
 
@@ -84,13 +96,16 @@ const UsuarioController = {
                 rolUsuario,
                 areaUsuario,
                 ubicacionUsuario,
+                estadoUsuario
             } = req.body;
 
             let resultadoAcUsuario = await UsuarioModel.update({
                 nombre: nombreUsuario,
+                correo: correo,
                 rol_fk: rolUsuario,
                 area_fk: areaUsuario,
-                ubicacion_fk: ubicacionUsuario
+                ubicacion_fk: ubicacionUsuario,
+                estado_usuario: estadoUsuario
             }, {
                 where: {
                     doc_identidad: docIdentidadUsuario
