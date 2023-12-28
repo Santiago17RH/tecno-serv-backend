@@ -12,27 +12,32 @@ const validateUsuario = [
     .exists()
     .not()
     .notEmpty()
-    .withMessage('Ingrese el nombre'),
+    .isLength({ min: 3, max: 80 })
+    .withMessage('Ingrese un nombre mayor a 3 y menor a 80 caracteres'),
 
     check('correo')
     .exists()
     .notEmpty()
     .isEmail()
-    .withMessage('Ingrese bien el correo'),
+    .isLength({ min: 5, max: 150 })
+    .withMessage('Ingrese bien el correo, no mayor a 150 caracteres'),
 
     check('rolUsuario')
     .exists()
     .notEmpty()
+    .isInt() 
     .withMessage('Elija el rol'),
 
     check('areaUsuario')
     .exists()
     .notEmpty()
+    .isInt() 
     .withMessage('Elija el área'),
 
     check('ubicacionUsuario')
     .exists()
     .notEmpty()
+    .isInt() 
     .withMessage('Elija la ubicacion'),
 
     check('contraseña')

@@ -22,7 +22,7 @@ numero_contacto: {
     allowNull: false
 },
 email_contacto: {
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING(150),
     allowNull: false
 }
 

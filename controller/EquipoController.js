@@ -4,8 +4,8 @@ const EquipoModel = require("../model/models/EquipoModel");
 const EquipoController = {
     getAllEquipos: async (req, res) => {
         try {
-            let equipos = await EquipoModel.findAll();
-            res.json({ message: "Consulta realizada con éxito", equipos });
+            let equiposCreados = await EquipoModel.findAll();
+            res.json({ message: "Consulta realizada con éxito", equiposCreados });
         } catch (error) {
             console.error("Error al obtener equipos:", error);
             res.status(500).json({ message: "Error al obtener equipos" });
