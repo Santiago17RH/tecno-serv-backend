@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://192.168.0.54:5173');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, token');
     next();
